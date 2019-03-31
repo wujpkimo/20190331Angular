@@ -9,6 +9,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { TablesComponent } from './tables/tables.component';
 import { ChartsComponent } from './charts/charts.component';
 import { NotfoundComponent } from './notfound/notfound.component';
+// import { AnimationsComponent } from './utilties/animations/animations.component';
+// import { ColorsComponent } from './utilties/colors/colors.component';
+// import { BordersComponent } from './utilties/borders/borders.component';
+// import { OtherComponent } from './utilties/other/other.component';
+import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -18,11 +24,17 @@ import { NotfoundComponent } from './notfound/notfound.component';
     DashboardComponent,
     TablesComponent,
     ChartsComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    LoginComponent,
+    // AnimationsComponent,
+    // ColorsComponent,
+    // BordersComponent,
+    // OtherComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

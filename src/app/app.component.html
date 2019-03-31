@@ -15,7 +15,8 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-      <a class="nav-link" [routerLink]="['']" routerLinkActive="router-link-active">
+      <a class="nav-link" [routerLink]="['']" routerLinkActive="router-link-active"
+        [routerLinkActiveOptions]="{exact: true}">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
     </li>
@@ -54,10 +55,12 @@
       <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Custom Utilities:</h6>
-          <a class="collapse-item" href="utilities-color.html">Colors</a>
-          <a class="collapse-item" href="utilities-border.html">Borders</a>
-          <a class="collapse-item" href="utilities-animation.html">Animations</a>
-          <a class="collapse-item" href="utilities-other.html">Other</a>
+          <a class="collapse-item" [routerLink]="['/utilties/colors']" routerLinkActive="router-link-active">Colors</a>
+          <a class="collapse-item" [routerLink]="['/utilties/borders']"
+            routerLinkActive="router-link-active">Borders</a>
+          <a class="collapse-item" [routerLink]="['/utilties/animations']"
+            routerLinkActive="router-link-active">Animations</a>
+          <a class="collapse-item" [routerLink]="['/utilties/other']" routerLinkActive="router-link-active">Other</a>
         </div>
       </div>
     </li>
@@ -86,7 +89,7 @@
           <div class="collapse-divider"></div>
           <h6 class="collapse-header">Other Pages:</h6>
           <a class="collapse-item" href="404.html">404 Page</a>
-          <a class="collapse-item" href="blank.html">Blank Page</a>
+          <a class="collapse-item" [routerLink]="['/pages/blank']" routerLinkActive="router-link-active">Blank Page</a>
         </div>
       </div>
     </li>
