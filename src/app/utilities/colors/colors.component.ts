@@ -24,6 +24,6 @@ export class ColorsComponent implements OnInit {
 
   goto(id: number) {
     const newId = ((this.type + 1) % 3) + 1;
-    this.router.navigateByUrl('/utilties/colors/' + newId);
+    this.router.navigateByUrl('/utilities/colors/' + newId);
   }
 }
