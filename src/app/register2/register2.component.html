@@ -10,34 +10,65 @@
             <div class="text-center">
               <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
             </div>
-            <form class="user" [formGroup]="form" (ngSubmit)="onSubmit(f)" #f="ngForm">
+            <pre>{{ form.value | json }}</pre>
+            <pre>form.valid = {{form.valid}}
+              form.invalid = {{form.invalid}}
+              form.pristine = {{form.pristine}}
+              form.dirty = {{form.dirty}}
+              form.enabled = {{form.enabled}}
+              form.disabled = {{form.disabled}}
+              form.touched = {{form.touched}}
+              form.untouched = {{form.untouched}}
+              form.errors = {{form.errors}}
+            </pre>
+            <form class="user" [formGroup]="form" (ngSubmit)="onSubmit(form)" #f="ngForm">
               <div class="form-group row">
                 <div class="col-sm-6 mb-3 mb-sm-0">
                   <input type="text" class="form-control form-control-user" formControlName="firstName"
+                    [class.has-error]="form.get('firstName').invalid && (f.submitted || form.get('firstName').dirty)"
                     placeholder="First Name">
+                  <pre>form.get('firstName').value = {{form.get('firstName').value}}
+                      form.get('firstName').valid = {{form.get('firstName').valid}}
+                      form.get('firstName').invalid = {{form.get('firstName').invalid}}
+                      form.get('firstName').pristine = {{form.get('firstName').pristine}}
+                      form.get('firstName').dirty = {{form.get('firstName').dirty}}
+                      form.get('firstName').enabled = {{form.get('firstName').enabled}}
+                      form.get('firstName').disabled = {{form.get('firstName').disabled}}
+                      form.get('firstName').touched = {{form.get('firstName').touched}}
+                      form.get('firstName').untouched = {{form.get('firstName').untouched}}
+                      form.get('firstName').errors = {{form.get('firstName').errors}}
+                    </pre>
                 </div>
                 <div class="col-sm-6">
                   <input type="text" class="form-control form-control-user" formControlName="lastName"
+                    [class.has-error]="form.get('lastName').invalid && (f.submitted || form.get('lastName').dirty)"
                     placeholder="Last Name">
                 </div>
               </div>
               <div class="form-group">
                 <input type="email" class="form-control form-control-user" formControlName="email"
+                  [class.has-error]="form.get('email').invalid && (f.submitted || form.get('email').dirty)"
                   placeholder="Email Address">
+                <span *ngIf="form.get('email')['errors']?.required">
+                  請輸入email
+                </span>
+                <span *ngIf="form.get('email')['errors']?.email">
+                  請輸入合法的email格式
+                </span>
+                <pre>{{ form.get('email').errors | json}}</pre>
               </div>
               <div class="form-group row">
                 <div class="col-sm-6 mb-3 mb-sm-0">
                   <input type="password" class="form-control form-control-user" formControlName="password"
-                    placeholder="Password">
+                    [class.has-error]="f.submitted && form.get('password').invalid" placeholder="Password">
                 </div>
                 <div class="col-sm-6">
                   <input type="password" class="form-control form-control-user" formControlName="password2"
-                    placeholder="Repeat Password">
+                    [class.has-error]="f.submitted && form.get('password2').invalid" placeholder="Password">
                 </div>
               </div>
-              <a href="login.html" class="btn btn-primary btn-user btn-block">
-                Register Account
-              </a>
+              <input type="submit" [disabled]="f.invalid" href="login.html" value="Register Account"
+                class="btn btn-primary btn-user btn-block">
               <hr>
               <a href="index.html" class="btn btn-google btn-user btn-block">
                 <i class="fab fa-google fa-fw"></i> Register with Google

@@ -1,13 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, NgForm, FormGroup } from '@angular/forms';
+import { FormBuilder, NgForm, FormGroup, Validators, ValidatorFn, ValidationErrors, AbstractControl } from '@angular/forms';
 
-class RegisterViewModel {
-  firstName = '';
-  lastName = '';
-  email = '';
-  password = '';
-  password2 = '';
+function compareEqual(fieldName: string): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    // debugger;
+    if (!control.parent) {
+      return null;
+    }
+    if (control.parent.get(fieldName).value === control.value) {
+      return null;
+    } else {
+      return { compareEqual: true };
+    }
+  };
 }
+
+const passwordValidator = Validators.compose([
+  Validators.required
+  , Validators.minLength(8)
+  , Validators.maxLength(16)]);
 
 @Component({
   selector: 'app-register2',
@@ -22,11 +33,13 @@ export class Register2Component implements OnInit {
     document.body.id = '';
     document.body.className = 'bg-gradient-primary';
     this.form = this.fb.group({
-      firstName: 'Will',
-      lastName: 'Huang',
-      email: 'huang@gmail.com',
-      password: '123123123',
-      password2: '123123123'
+      firstName: this.fb.control('Will', [Validators.required]),
+      lastName: ['Huang', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [passwordValidator]],
+      password2: ['', [
+        compareEqual('password')
+        , passwordValidator]]
     });
   }
   onSubmit(form: NgForm) {
