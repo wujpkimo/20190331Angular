@@ -7,6 +7,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { LayoutComponent } from './layout/layout.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth.guard';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,7 @@ const routes: Routes = [
       {
         path: 'utilities',
         canActivate: [AuthGuard]
+        // canLoad: [AuthGuard]
         , loadChildren: './utilities/utilities.module#UtilitiesModule'
       },
       { path: 'charts', component: ChartsComponent },
@@ -26,6 +28,7 @@ const routes: Routes = [
     ]
   },
   { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   { path: '**', component: NotfoundComponent },
 
 ];
