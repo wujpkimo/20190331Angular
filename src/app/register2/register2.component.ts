@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, NgForm, FormGroup } from '@angular/forms';
 
 class RegisterViewModel {
   firstName = '';
@@ -14,14 +15,23 @@ class RegisterViewModel {
   styleUrls: ['./register2.component.css']
 })
 export class Register2Component implements OnInit {
-  data = new RegisterViewModel();
-
-  constructor() { }
+  form: FormGroup;
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
     document.body.id = '';
     document.body.className = 'bg-gradient-primary';
-
+    this.form = this.fb.group({
+      firstName: 'Will',
+      lastName: 'Huang',
+      email: 'huang@gmail.com',
+      password: '123123123',
+      password2: '123123123'
+    });
   }
-
+  onSubmit(form: NgForm) {
+    if (form.valid) {
+      console.log(form);
+    }
+  }
 }
