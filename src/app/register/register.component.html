@@ -10,7 +10,7 @@
             <div class="text-center">
               <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
             </div>
-            <pre>{{ data | json }}</pre>
+            <!-- <pre>{{ data | json }}</pre>
             <pre>{{ f.value | json }}</pre>
             <pre>f.valid = {{f.valid}}
               f.invalid = {{f.invalid}}
@@ -21,13 +21,14 @@
               f.touched = {{f.touched}}
               f.untouched = {{f.untouched}}
               f.errors = {{f.errors}}
-            </pre>
+            </pre> -->
             <form class="user" #f="ngForm" (ngSubmit)="onSubmit(f)">
               <div class="form-group row">
                 <div class="col-sm-6 mb-3 mb-sm-0">
                   <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                    [(ngModel)]="data.firstName" name="fName" required #tFirstName="ngModel" placeholder="First Name">
-                  <pre>tFirstName.value = {{tFirstName.value}}
+                    [(ngModel)]="data.firstName" name="fName" required #tFirstName="ngModel" placeholder="First Name"
+                    [class.error]="tFirstName.invalid && (f.submitted || tFirstName.dirty)">
+                  <!-- <pre>tFirstName.value = {{tFirstName.value}}
                       tFirstName.valid = {{tFirstName.valid}}
                       tFirstName.invalid = {{tFirstName.invalid}}
                       tFirstName.pristine = {{tFirstName.pristine}}
@@ -37,16 +38,18 @@
                       tFirstName.touched = {{tFirstName.touched}}
                       tFirstName.untouched = {{tFirstName.untouched}}
                       tFirstName.errors = {{tFirstName.errors}}
-                    </pre>
+                    </pre> -->
                 </div>
                 <div class="col-sm-6">
                   <input type="text" class="form-control form-control-user" id="exampleLastName"
-                    [(ngModel)]="data.lastName" name="lName" required placeholder="Last Name">
+                    [(ngModel)]="data.lastName" name="lName" required placeholder="Last Name" #tLastName="ngModel"
+                    [class.error]="tLastName.invalid && (f.submitted || tLastName.dirty)">
                 </div>
               </div>
               <div class="form-group">
                 <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                  [(ngModel)]="data.email" name="email" required email placeholder="Email Address" #tEmail="ngModel">
+                  [(ngModel)]="data.email" name="email" required email placeholder="Email Address" #tEmail="ngModel"
+                  [class.error]="tEmail.invalid && (f.submitted || tEmail.dirty)">
                 <span *ngIf="tEmail['errors']?.required">
                   請輸入email
                 </span>
@@ -65,13 +68,14 @@
                 <div class="col-sm-6 mb-3 mb-sm-0">
                   <input type="password" class="form-control form-control-user" id="exampleInputPassword"
                     [(ngModel)]="data.password" name="password" placeholder="Password" #tPassword="ngModel"
-                    [required]="tPassword2.value!=''" minlength="8" maxlength="16">
+                    [class.error]="f.submitted && tPassword.touched" [required]="tPassword2.value!=''" minlength="8"
+                    maxlength="16">
                 </div>
                 <div class="col-sm-6">
                   <input type="password" class="form-control form-control-user" id="exampleRepeatPassword"
                     [(ngModel)]="data.password2" name="password2" placeholder="Repeat Password"
-                    [required]="tPassword.value!=''" #tPassword2="ngModel" [compareEqual]="tPassword.value"
-                    minlength="8" maxlength="16">
+                    [class.error]="f.submitted && tPassword.touched" [required]="tPassword.value!=''"
+                    #tPassword2="ngModel" [compareEqual]="tPassword.value" minlength="8" maxlength="16">
                   <pre>{{tPassword2.errors | json}}</pre>
                 </div>
               </div>

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 
 class RegisterViewModel {
   firstName = '';
@@ -10,24 +9,19 @@ class RegisterViewModel {
 }
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  selector: 'app-register2',
+  templateUrl: './register2.component.html',
+  styleUrls: ['./register2.component.css']
 })
-export class RegisterComponent implements OnInit {
-
+export class Register2Component implements OnInit {
   data = new RegisterViewModel();
+
   constructor() { }
 
   ngOnInit() {
     document.body.id = '';
     document.body.className = 'bg-gradient-primary';
-  }
 
-  onSubmit(form: NgForm) {
-    if (form.valid) {
-      console.log(form);
-    }
   }
 
 }

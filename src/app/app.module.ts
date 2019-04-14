@@ -18,6 +18,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { CompareValidatorModule } from 'angular-compare-validator';
+import { Register2Component } from './register2/register2.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { CompareValidatorModule } from 'angular-compare-validator';
     LoginComponent,
     LayoutComponent,
     RegisterComponent,
+    Register2Component,
   ],
   imports: [
     BrowserModule,
