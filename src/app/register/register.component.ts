@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 class RegisterViewModel {
   firstName = 'Will';
@@ -21,6 +22,12 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     document.body.id = '';
     document.body.className = 'bg-gradient-primary';
+  }
+
+  onSubmit(form: NgForm) {
+    if (form.valid) {
+      console.log(form);
+    }
   }
 
 }
