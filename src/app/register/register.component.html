@@ -46,16 +46,32 @@
               </div>
               <div class="form-group">
                 <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                  [(ngModel)]="data.email" name="email" required email placeholder="Email Address">
+                  [(ngModel)]="data.email" name="email" required email placeholder="Email Address" #tEmail="ngModel">
+                <span *ngIf="tEmail['errors']?.required">
+                  請輸入email
+                </span>
+                <!-- <span *ngIf="tEmail.errors && tEmail.value=='' && tEmail.dirty">
+                  請輸入email
+                </span> -->
+                <span *ngIf="tEmail['errors']?.email">
+                  請輸入合法的email格式
+                </span>
+                <!-- <span *ngIf="tEmail.errors && tEmail.value!=''">
+                  請輸入合法的email格式
+                </span> -->
+                <pre>{{tEmail.errors | json}}</pre>
               </div>
               <div class="form-group row">
                 <div class="col-sm-6 mb-3 mb-sm-0">
                   <input type="password" class="form-control form-control-user" id="exampleInputPassword"
-                    [(ngModel)]="data.password" name="password" required placeholder="Password">
+                    [(ngModel)]="data.password" name="password" placeholder="Password" #tPassword="ngModel"
+                    [required]="tPassword2.value!=''">
                 </div>
                 <div class="col-sm-6">
                   <input type="password" class="form-control form-control-user" id="exampleRepeatPassword"
-                    [(ngModel)]="data.password2" name="password2" required placeholder="Repeat Password">
+                    [(ngModel)]="data.password2" name="password2" placeholder="Repeat Password"
+                    [required]="tPassword.value!=''" #tPassword2="ngModel" [compareEqual]="tPassword.value">
+                  <pre>{{tPassword2.errors | json}}</pre>
                 </div>
               </div>
               <input type="submit" [disabled]="f.invalid" href="login.html" value="Register Account"

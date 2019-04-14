@@ -17,6 +17,8 @@ import { RegisterComponent } from './register/register.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { CompareValidatorModule } from 'angular-compare-validator';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CompareValidatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
