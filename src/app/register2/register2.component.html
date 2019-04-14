@@ -19,7 +19,8 @@
               form.disabled = {{form.disabled}}
               form.touched = {{form.touched}}
               form.untouched = {{form.untouched}}
-              form.errors = {{form.errors}}
+              form.status = {{form.status}}
+              form.errors = {{form.errors | json}}
             </pre>
             <form class="user" [formGroup]="form" (ngSubmit)="onSubmit(form)" #f="ngForm">
               <div class="form-group row">
